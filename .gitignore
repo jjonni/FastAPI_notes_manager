@@ -1,0 +1,15 @@
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+
+#
+venv/
+.venv/
+.env
+.mypy_cache/
+__pycache__/
+.DS_Store
+.postgres_data/
+.pgadmin_data/
