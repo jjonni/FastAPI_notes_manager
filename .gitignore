@@ -1,8 +1,9 @@
 # PyCharm
-.idea/
+.idea/*
 *.iml
 *.iws
 *.ipr
+*.xml
 
 #
 venv/
