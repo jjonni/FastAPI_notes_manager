@@ -1,0 +1,33 @@
+Table "Users":
+- id (PK)
+- name
+- surname
+- email
+- password_hash
+- created_at
+
+Table "Notes":
+- id (PK)
+- user_id (FK)
+- title
+- content
+- created_at
+- updated_at
+
+Table "Tags":
+- id (PK)
+- tag_name
+
+Table "Note_tags":
+- note_id (FK)
+- tag_id (FK)
+
+- PK (note_id, tag_id)
+
+
+Relations:
+| № | Parent table | Child entity | Relation type |
+| - | ------------ | ------------ | ------------- |
+| 1 |     User     |    Notes     |      1:M      |
+| 2 |     Tags     |   Note_tags  |      1:M      |
+| 3 |     Notes    |   Note_tags  |      1:M      |
