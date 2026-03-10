@@ -94,3 +94,5 @@ class NoteTag(Base):
 
     note: Mapped[Note] = relationship(back_populates="note_tags")
     tag: Mapped[Tag] = relationship(back_populates="note_tags")
+
+Base.metadata.create_all(engine)
