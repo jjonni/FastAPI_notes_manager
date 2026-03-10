@@ -1,11 +1,12 @@
 import logging
+import re
 
 from datetime import datetime
 from typing import List
 from config.config import load_config, Config
 
 from sqlalchemy import URL, create_engine, String, DateTime, func, ForeignKey, PrimaryKeyConstraint
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, validates
 
 config: Config = load_config()
 
@@ -46,6 +47,12 @@ class User(Base):
     )
 
     notes: Mapped[List["Note"]] = relationship(back_populates="user")
+
+    @validates("email")
+    def validate_email(self, key, value):
+        if not re.match(r'[^@\s]+@[^@\s]+\.[^@\s]+', value):
+            raise ValueError(f"{key} must be a valid email")
+        return value
 
 class Note(Base):
     __tablename__ = "note"
