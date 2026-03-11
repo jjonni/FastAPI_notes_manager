@@ -24,8 +24,9 @@ class User(Base):
         server_default=func.now()
     )
 
-    notes: Mapped[List["Note"]] = relationship(back_populates="user")
+    notes: Mapped[List["Note"]] = relationship(back_populates="user", cascade="all")
 
+    # Насколько понимаю, надо перенести валидацию на сторону pydantic моделей
     @validates("email")
     def validate_email(self, key, value):
         if not re.match(r'[^@\s]+@[^@\s]+\.[^@\s]+', value):
@@ -50,7 +51,7 @@ class Note(Base):
     )
 
     user: Mapped[User] = relationship(back_populates="notes")
-    note_tags: Mapped[List["NoteTag"]] = relationship(back_populates="note")
+    note_tags: Mapped[List["NoteTag"]] = relationship(back_populates="note", cascade="all")
 
 class Tag(Base):
     __tablename__ = "tag"
