@@ -50,7 +50,7 @@ class Note(Base):
     )
 
     user: Mapped[User] = relationship(back_populates="notes")
-    note_tags: Mapped[List["NoteTag"]] = relationship(back_populates="notes")
+    note_tags: Mapped[List["NoteTag"]] = relationship(back_populates="note")
 
 class Tag(Base):
     __tablename__ = "tag"
